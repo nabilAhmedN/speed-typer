@@ -1,5 +1,6 @@
 const display = document.getElementById("display");
 const question = document.getElementById("question");
+// start button fixed
 const startBtn = document.getElementById("starts");
 const countdownOverlay = document.getElementById("countdown");
 const resultModal = document.getElementById("result");
@@ -68,6 +69,7 @@ const gameOver = () => {
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
+  // second timer float to integer
   const timeTaken = parseInt((finishTime - startTime) / 1000);
 
   // show result modal
@@ -98,6 +100,7 @@ const gameOver = () => {
 const closeModal = () => {
   modalBackground.classList.toggle("hidden");
   resultModal.classList.toggle("hidden");
+  // when click in close button then page will be reload
   location.reload()
 };
 
@@ -109,12 +112,15 @@ const start = () => {
   countdownOverlay.style.display = "flex";
 
   const startCountdown = setInterval(() => {
+    // countdown fixed 
     countdownOverlay.innerHTML = `<h1>${count}</h1>`;
 
     // finished timer
+    // It starts with three and ends with zero
     if (count == -1) {
       // -------------- START TYPING -----------------
       document.addEventListener("keydown", typeController);
+      // after the countdown, count screen gone
       countdownOverlay.style.display = "none";
       display.classList.remove("inactive");
 
@@ -134,6 +140,7 @@ displayHistory();
 // Show typing time spent
 setInterval(() => {
   const currentTime = new Date().getTime();
+  // second timer float to integer
   const timeSpent = parseInt((currentTime - startTime) / 1000);
 
 
